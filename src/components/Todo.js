@@ -1,7 +1,7 @@
-import {BsCheckLg, BsEraserFill} from 'react-icons/bs'
+import {BsCheckLg, BsEraserFill, BsPencilFill, BsPencil} from 'react-icons/bs'
 
 const Todo = (props)=>{
-    const {todo, idx, completeTodo, deleteTodo, ...others} = props;
+    const {todo, idx, completeTodo, deleteTodo, editKey, editTodo, ...others} = props;
     
     const handleComplete = ()=>{
         completeTodo(idx);
@@ -11,10 +11,16 @@ const Todo = (props)=>{
         deleteTodo(idx);
     }
 
+    const handleEdit = () => {
+        if (editKey === idx) {
+            editTodo(-1);
+        } else {
+            editTodo(idx);
+        }
+    }
+
     return (
-        <div className="todo" {...others}
-            
-        >
+        <div className="todo" {...others}>
             <p className = "todo-text" style={{ textDecoration: todo.isComplete ? 'line-through': 'none'}}>
                 { todo.text }    
             </p>
@@ -24,6 +30,9 @@ const Todo = (props)=>{
                 </button>
                 <button className = "action" onClick = {()=> handleDelete()}>
                     <BsEraserFill/>
+                </button>   
+                <button className = "action" onClick = {handleEdit}>
+                    {editKey === idx ? <BsPencil/>: <BsPencilFill/>}
                 </button>   
             </div>
         </div>

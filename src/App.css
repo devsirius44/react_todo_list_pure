@@ -29,6 +29,12 @@
   line-height: 32px;
 }
 
+.app{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
 .todo-form {
   display: flex;
   align-items: center;
